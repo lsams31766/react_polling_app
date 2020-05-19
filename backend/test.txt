@@ -1,0 +1,15 @@
+Test curl commands
+curl -i -X GET http://127.0.0.1:5000
+
+curl -i -X POST -H 'Content-Type: application/json' -d '{"title":"Best Movie"}' http://127.0.0.1:5000/questions
+curl -i -X POST -H 'Content-Type: application/json' -d '{"title":"Best Deli Meat"}' http://127.0.0.1:5000/questions
+curl -i -X POST -H 'Content-Type: application/json' -d '{"title":"Best Car2"}' http://127.0.0.1:5000/questions
+
+curl -i -X POST -H 'Content-Type: application/json' -d '{"title":"Best Movie", "answer":"Earthquake","username":"Larry"}' http://127.0.0.1:5000/answers
+curl -i -X POST -H 'Content-Type: application/json' -d '{"title":"Best Car2", "answer":"Hummer","username":"Sally"}' http://127.0.0.1:5000/answers
+
+curl -i -X POST -H 'Content-Type: application/json' -d '{"title":"Best Movie"}' http://127.0.0.1:5000/results
+curl -i -X POST -H 'Content-Type: application/json' -d '{"title":"Best Car2"}' http://127.0.0.1:5000/results
+
+curl -i -X POST -H 'Content-Type: application/json' -d '{"title":"Best Car","question":"What is the Best Car?", "answers":["Chevy","Cadillac","Mustang","Hummer"]}' http://127.0.0.1:5000/create
+

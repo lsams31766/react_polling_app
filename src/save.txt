@@ -1,0 +1,85 @@
+import React, { Component } from 'react';
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormControl from '@material-ui/core/FormControl';
+import FormLabel from '@material-ui/core/FormLabel';
+import TextField from '@material-ui/core/TextField'
+import Button from '@material-ui/core/Button'
+import { Link } from 'react-router-dom';
+
+class Questions extends Component { 
+    constructor(props) {
+        super(props)
+        console.log('Questions props',props)
+        this.state = {
+            question: null,
+            answers: null
+        }
+    }
+    
+    //const [value, setValue] = React.useState('female');
+
+    componentDidMount() {
+        // debugger
+        console.log('Questions got props',this.props.location.state)
+        /*
+        this.setState({
+            question: this.props.location.state.data.question,
+            answers: this.props.location.state.data.answers
+        })
+        */
+        this.state = {
+            username: ''
+        }
+        // this.handleSubmit = this.handleSubmit.bind(this)
+    }
+
+    handleChange = (event) => {
+        console.log(this.answer_list)
+        console.log(this.props.location)
+        // this.setValue(event.target.value);
+    };
+    handleTextFieldChange = (event) => {
+        this.setState({
+            username: event.target.value
+        })
+    }
+
+    handleSubmit = (event) => {
+        event.preventDefault()
+        console.log("Submit")
+    }
+
+    render() {
+        // debugger
+        if (!this.state.question)
+            return null
+        let question = this.state.question
+        let answers = this.state.answers
+        return (
+            <form onSubmit={this.handleSubmit}>
+            <FormControl component="fieldset" onSubmit={this.handleSubmit}>
+            <p>{question}</p>
+            <FormLabel component="legend">Choose</FormLabel>
+            <RadioGroup aria-label="Choose" name="choice" value={this.value} onChange={this.handleChange}>
+            {answers.map((value) =>
+                <FormControlLabel value={value} key={value} control={<Radio />} label={value} />
+            )}
+            </RadioGroup>
+            {/* 
+            <TextField id="outlined-basic" label="username" variant="outlined" 
+                value={this.state.username}
+                onChange={this.handleTextFieldChange}
+            />
+            */ }
+            <Button type="submit" variant="contained" color="primary">Submit</Button>
+            { /*<p><Link to="/">Submit</Link></p> */ }
+
+            </FormControl>
+            </form>
+        );
+    }
+}
+
+export default Questions;
