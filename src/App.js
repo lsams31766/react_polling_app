@@ -52,6 +52,7 @@ class App extends Component {
                   }}>Choose Survey</Link>
                 </li>
                 <li><Link to="/results">Results</Link></li>
+                <li><Link to="/createsurvey">Create Survey</Link></li>
               </ul>
           </div>
         </div>

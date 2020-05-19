@@ -6,6 +6,7 @@ import { Route, HashRouter} from 'react-router-dom';
 import Survey from './Survey/Survey'
 import Questions from './Survey/Questions'
 import Results from './Survey/Results'
+import CreateSurvey from './Survey/CreateSurvey'
 // import * as serviceWorker from './serviceWorker';
 
 
@@ -17,6 +18,7 @@ const Root = () => {
                 <Route path="/survey" component={Survey} />
                 <Route path="/questions" component={Questions} />
                 <Route path="/results" component={Results} />
+                <Route path="/createsurvey" component={CreateSurvey} />
             </div>
         </HashRouter>
 	)
