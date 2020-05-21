@@ -53,6 +53,7 @@ class App extends Component {
                 </li>
                 <li><Link to="/results">Results</Link></li>
                 <li><Link to="/createsurvey">Create Survey</Link></li>
+                <li><Link to="/maintenance">Maintain Survey Items</Link></li>
               </ul>
           </div>
         </div>

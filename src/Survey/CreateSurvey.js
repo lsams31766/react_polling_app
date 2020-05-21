@@ -6,40 +6,16 @@ import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import { Link } from 'react-router-dom';
 
-class DocumentInput extends React.Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            value: ''
-        }
-    }
-
-    handleChange = (event, value) => {
-        this.setState({
-            value: event.target.value
-        })
-    }
-
-    render() {
-        return <div><TextField id="outlined-basic" label="answer" variant="outlined" 
-        style={{width: 500}}  
-        value={this.value}
-        onChange={this.handleChange}
-        name= { `answer_field-${ this.props.index }-answer_field` }
-        /></div>        
-    }
-}
-
 class CreateSurvey extends Component { 
     constructor(props) {
         super(props)
         this.state = {
             title: '',
             question: '',
-            answers: [],
-            answer_fields: []
+            answers: ['']
         }
         this.addAnswer = this.addAnswer.bind(this)
+        this.handleAnswerChange = this.handleAnswerChange.bind(this)
     }
     
     componentDidMount() {
@@ -58,16 +34,26 @@ class CreateSurvey extends Component {
         })
     }
 
+    handleAnswerChange = (index) => (event) => {
+        // debugger
+        // console.log('answer index',index)
+        let answers = [...this.state.answers]
+        let answer = event.target.value
+        answers[index] = answer
+        this.setState({answers})
+    }
+
     goHome() {
         this.props.history.push({
           pathname: "/"
         })
     }
 
-    addAnswer() {
-        console.log("add answer field")
-        const answer_fields = this.state.answer_fields.concat(DocumentInput)
-        this.setState({ answer_fields })
+    addAnswer = () => {
+        // debugger
+        let answers = [...this.state.answers]
+        answers.push("???")
+        this.setState({answers})
     }
 
     handleSubmit = (event) => {
@@ -90,29 +76,36 @@ class CreateSurvey extends Component {
             })
     }
     render() {
-        const answer_fields = this.state.answer_fields.map((Element, index) => {
-            return <Element key={index} index={index} />
-        })       
+        const answers = this.state.answers
         //debugger
         return (
             <form onSubmit={this.handleSubmit}>
             <h2>Create a New Survey</h2>
-            <FormControl component="fieldset">
+            <FormControl component="fieldset" margin="normal">
             <TextField id="outlined-basic" label="title" variant="outlined" 
-                style={{width: 300}}  
+                style={{width: 300, marginBottom: 10}}  
                 value={this.state.title}
                 onChange={this.handleTitleChange}
+                key={"title"}
             />
             <TextField id="outlined-basic" label="question" variant="outlined" 
-                style={{width: 500}}  
+                style={{width: 500, marginBottom: 10}}  
                 value={this.state.question}
                 onChange={this.handleQuestionChange}
+                key={"question"}
             />
-            <div className="inputs">
-                { answer_fields }
+            <div>
+                {answers.map((answer, index) =>
+                <div>
+                <TextField id="outlined-basic" label="" variant="outlined" 
+                    value={answer}
+                    onChange={this.handleAnswerChange(index)}
+                    />
+                </div>
+                )}        
             </div>
 
-            <Button variant="contained" color="secondary"
+            <Button variant="contained" color="secondary" style={{marginBottom: 10}}
                 onClick={this.addAnswer}>
                 Add Answer
             </Button>

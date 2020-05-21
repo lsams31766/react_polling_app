@@ -7,6 +7,7 @@ import Survey from './Survey/Survey'
 import Questions from './Survey/Questions'
 import Results from './Survey/Results'
 import CreateSurvey from './Survey/CreateSurvey'
+import Maintenance from './Survey/Maintenance'
 // import * as serviceWorker from './serviceWorker';
 
 
@@ -19,6 +20,7 @@ const Root = () => {
                 <Route path="/questions" component={Questions} />
                 <Route path="/results" component={Results} />
                 <Route path="/createsurvey" component={CreateSurvey} />
+                <Route path="/maintenance" component={Maintenance} />
             </div>
         </HashRouter>
 	)
